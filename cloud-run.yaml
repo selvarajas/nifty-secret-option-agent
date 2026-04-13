@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: nifty-secret-option-agent
+spec:
+  template:
+    spec:
+      containers:
+      - image: gcr.io/YOUR_PROJECT/nifty-secret-option-agent
+        env:
+        - name: GEMINI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: gemini-key
+              key: key
